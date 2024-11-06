@@ -118,7 +118,6 @@
 	# Browsers
 	#
 	firefox
-	google-chrome
   ]) ++ ( with pkgs; [
 	#
 	# Virtualization
