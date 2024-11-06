@@ -9,13 +9,14 @@
     [ # Include the results of the hardware scan.
       ./hosts/harry-tp/hardware-configuration.nix
       ./users/all.nix
+      ./modules/virtualisation.nix
     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "nixos-tp"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -51,6 +52,8 @@
   services.xserver.desktopManager.gnome.enable = true;
   
   services.gnome.core-utilities.enable = false;
+  services.udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
+
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -98,17 +101,38 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = (with pkgs; [
+  #
+  # Terminal
+  #
 	wget
 	neovim
 	neofetch
 	alacritty
 	curl
 	git
-	home-manager
+	lolcat
+	unzip
+  ]) ++ ( with pkgs; [
+	#
+	# Browsers
+	#
 	firefox
+	google-chrome
+  ]) ++ ( with pkgs; [
+	#
+	# Virtualization
+	#
+	podman
+	podman-tui
+	podman-compose
+  ]) ++ ( with pkgs; [
+	#
+	# Misc
+	#
+	home-manager
 	micromamba
-  ];
+  ]);
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
