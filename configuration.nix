@@ -98,13 +98,18 @@
 
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  
+  # Trust me BRO
+  nix.extraOptions = ''
+	trusted-users = root harry
+  '';
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = (with pkgs; [
-  #
-  # Terminal
-  #
+  	#
+  	# Terminal
+  	#
 	wget
 	neovim
 	neofetch
@@ -113,6 +118,16 @@
 	git
 	lolcat
 	unzip
+	yq
+	jq
+	gnumake
+	unzip
+	gcc
+	ripgrep
+  ]) ++ ( with pkgs; [
+  	# Development stuff
+	devenv
+	android-studio
   ]) ++ ( with pkgs; [
 	#
 	# Browsers
@@ -131,6 +146,10 @@
 	#
 	home-manager
 	micromamba
+  ]) ++ (with pkgs; [
+  	# Display stuff
+	xwayland
+	xorg.xhost
   ]);
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -2,6 +2,7 @@
 {
 	
 	programs.zsh.enable = true;
+	programs.adb.enable = true;
 	# Prevent the new user dialog in zsh
 
 	services.xserver.excludePackages = [ pkgs.xterm ];
@@ -12,7 +13,7 @@
 	users.users.harry = {
 		isNormalUser = true;
 		description = "harry";
-		extraGroups = [ "networkmanager" "wheel" ];
+		extraGroups = [ "networkmanager" "wheel" "kvm" "adbusers" ];
 		shell = pkgs.zsh;
 	};
 }
