@@ -52,7 +52,7 @@
   services.xserver.desktopManager.gnome.enable = true;
   
   services.gnome.core-utilities.enable = false;
-  services.udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
+  services.udev.packages = [ pkgs.gnome-settings-daemon ];
 
 
   # Configure keymap in X11
@@ -110,46 +110,49 @@
   	#
   	# Terminal
   	#
-	wget
-	neovim
-	neofetch
-	alacritty
-	curl
-	git
-	lolcat
-	unzip
-	yq
-	jq
-	gnumake
-	unzip
-	gcc
-	ripgrep
+    wget
+    neovim
+    neofetch
+    ghostty
+    curl
+    zellij
+    git
+    lolcat
+    unzip
+    zip
+    yq
+    jq
+    gnumake
+    unzip
+    gcc
+    ripgrep
+    psmisc
+    lsof
   ]) ++ ( with pkgs; [
   	# Development stuff
-	devenv
-	android-studio
+    devenv
   ]) ++ ( with pkgs; [
-	#
-	# Browsers
-	#
-	firefox
+    #
+    # Browsers
+    #
+    firefox
   ]) ++ ( with pkgs; [
-	#
-	# Virtualization
-	#
-	podman
-	podman-tui
-	podman-compose
+    #
+    # Virtualization
+    #
+    podman
+    podman-tui
+    podman-compose
   ]) ++ ( with pkgs; [
-	#
-	# Misc
-	#
-	home-manager
-	micromamba
+    #
+    # Misc
+    #
+    home-manager
   ]) ++ (with pkgs; [
-  	# Display stuff
-	xwayland
-	xorg.xhost
+    #
+    # Python
+    #
+    micromamba
   ]);
 
   # Some programs need SUID wrappers, can be configured further or are
