@@ -75,7 +75,7 @@ echo ""
 echo "Pushing files…"
 echo ""
 
-sudo -u $user git push --force "$remote_origin" main
+sudo -u $user git push --force origin main
 
 cd $repo_dir
 
