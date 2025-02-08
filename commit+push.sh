@@ -74,7 +74,7 @@ git add -A
 
 git commit -m "$msg"
 
-git push $local_origin main
+git push --force $local_origin main
 
 cd $user_folder
 
