@@ -11,21 +11,11 @@ cd "$repo_dir"
 
 user="$SUDO_USER"
 user_folder="/home/$user/.config/nixos"
-local_origin="local-origin"
-remote_origin="origin"
-
-# Check if the remote exists
-if git remote get-url "$local_origin" &>/dev/null; then
-        echo "Remote '$local_origin' already exists."
-else
-        git remote add "$local_origin" "$user_folder"
-        echo "Remote '$local_origin' added."
-fi
 
 echo ""
 
 echo "Authenticating via ssh as user: $user"
-remote=$(git remote -v | grep -v "$local_origin" | awk '{print $2}' | cut -d':' -f1 | sort -u)
+remote=$(git remote -v | awk '{print $2}' | cut -d':' -f1 | sort -u)
 
 echo ""
 
@@ -66,30 +56,18 @@ echo "✔ Valid!"
 echo "…"
 echo ""
 echo "$output"
-echo ""
 
 rm -rf "$user_folder"
 mkdir -p "$user_folder"
 
-remote_origin=$(git remote -v | grep -v "$local_origin" | awk '{print $2}' | sort -u)
+group=$(id -gn $user)
 
-git init --bare "$user_folder"
-
-cd "$user_folder"
-
-git remote add origin "$remote_origin"
-
-cd "$repo_dir"
-
-git add -A
-
+git add -A 
 git commit -m "$msg"
 
-git push "file://$local_origin" main
+cp -r "$repo_dir" "$user_folder"
 
-cd $user_folder
-
-group=$(id -gn $user)
+cd "$user_folder"
 
 chown -R "$user:$group" "$user_folder"
 
