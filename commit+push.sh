@@ -68,13 +68,24 @@ echo ""
 echo "$output"
 echo ""
 
-mkdir -p $user_folder
+rm -rf "$user_folder"
+mkdir -p "$user_folder"
+
+remote_origin=$(git remote -v | grep -v "$local_origin" | awk '{print $2}' | sort -u)
+
+git init --bare "$user_folder"
+
+cd "$user_folder"
+
+git remote add origin "$remote_origin"
+
+cd "$repo_dir"
 
 git add -A
 
 git commit -m "$msg"
 
-git push --force $local_origin main
+git push "file://$local_origin" main
 
 cd $user_folder
 
