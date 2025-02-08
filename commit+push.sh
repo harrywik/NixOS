@@ -65,7 +65,7 @@ group=$(id -gn $user)
 git add -A 
 git commit -m "$msg"
 
-cp -r "$repo_dir" "$user_folder"
+cp -r "$repo_dir" "$user_folder/../"
 
 cd "$user_folder"
 
