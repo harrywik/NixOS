@@ -110,24 +110,27 @@
   	#
   	# Terminal
   	#
-    wget
-    neovim
-    neofetch
-    ghostty
-    curl
-    zellij
-    git
-    lolcat
-    unzip
-    zip
-    yq
-    jq
-    gnumake
-    unzip
-    gcc
-    ripgrep
-    psmisc
-    lsof
+        wget
+        neovim
+        neofetch
+        ghostty
+        curl
+        zellij
+        git
+        lolcat
+        unzip
+        zip
+        yq
+        jq
+        gnumake
+        gcc
+        ripgrep
+        psmisc
+        lsof
+        eza
+        yazi
+        fzf
+        bat
   ]) ++ ( with pkgs; [
   	# Development stuff
     devenv
@@ -153,6 +156,13 @@
     # Python
     #
     micromamba
+  ]) ++ (with pkgs; [
+    # x11 stuff
+    xwayland
+    xorg.libX11
+    xorg.libXrandr
+    xorg.libXcursor
+    xorg.xhost
   ]);
 
   # Some programs need SUID wrappers, can be configured further or are
