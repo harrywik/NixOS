@@ -13,7 +13,7 @@
 	users.users.harry = {
 		isNormalUser = true;
 		description = "harry";
-		extraGroups = [ "networkmanager" "wheel" "kvm" "adbusers" ];
+		extraGroups = [ "networkmanager" "wheel" "kvm" "adbusers" "libvirtd"];
 		shell = pkgs.zsh;
 	};
 }

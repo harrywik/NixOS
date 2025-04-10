@@ -131,6 +131,7 @@
         yazi
         fzf
         bat
+        dig
   ]) ++ ( with pkgs; [
   	# Development stuff
     devenv
@@ -146,6 +147,10 @@
     podman
     podman-tui
     podman-compose
+    qemu
+    qemu_kvm
+    quickemu
+    virt-manager
   ]) ++ ( with pkgs; [
     #
     # Misc
@@ -163,6 +168,9 @@
     xorg.libXrandr
     xorg.libXcursor
     xorg.xhost
+  ]) ++ (with pkgs; [
+    # Sound stuff
+    portaudio
   ]);
 
   # Some programs need SUID wrappers, can be configured further or are
