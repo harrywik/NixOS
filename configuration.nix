@@ -51,7 +51,7 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
   
-  services.gnome.core-utilities.enable = false;
+  services.gnome.core-apps.enable = false;
   services.udev.packages = [ pkgs.gnome-settings-daemon ];
 
 
@@ -68,7 +68,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -110,28 +110,28 @@
   	#
   	# Terminal
   	#
-        wget
-        neovim
-        neofetch
-        ghostty
-        curl
-        zellij
-        git
-        lolcat
-        unzip
-        zip
-        yq
-        jq
-        gnumake
-        gcc
-        ripgrep
-        psmisc
-        lsof
-        eza
-        yazi
-        fzf
-        bat
-        dig
+    wget
+    neovim
+    neofetch
+    ghostty
+    curl
+    zellij
+    git
+    lolcat
+    unzip
+    zip
+    yq
+    jq
+    gnumake
+    gcc
+    ripgrep
+    psmisc
+    lsof
+    eza
+    yazi
+    fzf
+    bat
+    dig
   ]) ++ ( with pkgs; [
   	# Development stuff
     devenv
@@ -171,7 +171,16 @@
   ]) ++ (with pkgs; [
     # Sound stuff
     portaudio
+    pipewire
   ]);
+
+  nix.settings.auto-optimise-store = true;
+
+  nix.gc.automatic = true;
+
+  nix.gc.dates = "daily";
+
+  nix.gc.options = "--delete-older-than 7d"; 
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
